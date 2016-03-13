@@ -59,7 +59,7 @@ public class ChatClient extends JFrame {
 	 * Create the frame.
 	 */
 	public ChatClient() {
-		setTitle("Chater");
+		setTitle("ChatRoom");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 475);
 		contentPane = new JPanel();
@@ -80,7 +80,7 @@ public class ChatClient extends JFrame {
 	private JTextArea getMessageArea() {
 		if (messageArea == null) {
 			messageArea = new JTextArea();
-			messageArea.setEditable(false);
+			messageArea.setEditable(false); // here will appear conversation
 			messageArea.setRows(40);
 			messageArea.setColumns(8);
 		}
@@ -101,39 +101,39 @@ public class ChatClient extends JFrame {
 		}
 		return textField;
 	}
+	
+	//Prompt for and return the address of the server --> then we will have in run(): String serverAddress
 	private String getServerAddress() {
         return JOptionPane.showInputDialog(frame,"Enter IP Address of the Server:",
-            "Welcome to the Chatter",
+            "Welcome to the ChatRoom",
             JOptionPane.QUESTION_MESSAGE);
            
     }
-	/*private String getUserName() {
+	
+	//Prompt for and return the screen name
+	private String getUserName() {
         return JOptionPane.showInputDialog(
             frame,
             "Choose a screen name:",
             "Screen name selection",
             JOptionPane.PLAIN_MESSAGE);
-    }*/
+    }
 	private void run() throws IOException {
 
-        // Make connection and initialize streams
-		
+        // Make connection 
         String serverAddress = getServerAddress();
         Socket socket = new Socket(serverAddress, 30121); // if uncomment previous line then "localhost" => serverAddress
         in = new BufferedReader(new InputStreamReader(
             socket.getInputStream()));
         out = new PrintWriter(socket.getOutputStream(), true);
 
-        // Process all messages from server, according to the protocol.
+        // Process all messages from server
         while (true) {
             String line = in.readLine();
-            if (line.startsWith("SUBMITNAME")) {
-                out.println(getName());
-            } else if (line.startsWith("NAMEACCEPTED")) {
-                textField.setEditable(true);
-            } else if (line.startsWith("MESSAGE")) {
-                messageArea.append(line.substring(8) + "\n");
-            }
+           
+            textField.setEditable(true); // clients will text here
+            messageArea.append(line.substring(8) + "\n"); // 8 because of number of columns 
+            
         }
     }
 }

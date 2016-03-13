@@ -16,7 +16,7 @@ namespace Server_Sah
         static void Main(string[] args)
         {
             //Creates a listener which is waiting for clients to ask to connect
-            TcpListener serverSocket = new TcpListener(30121);
+            TcpListener serverSocket = new TcpListener(9001);
 
             //Creates a socket for client to grab to
             TcpClient clientSocket = default(TcpClient);
