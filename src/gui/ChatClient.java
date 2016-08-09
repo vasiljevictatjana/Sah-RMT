@@ -2,16 +2,16 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.TextArea;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import globalniKlijentiKomunikacija.ChatClientB;
-
+import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,55 +19,33 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.awt.event.ActionEvent;
-import javax.swing.JScrollPane;
 
-public class ChatClient extends JFrame {
-	
-	BufferedReader in;
-    PrintWriter out;
-	
-	static ChatClient frame = new ChatClient();
-	
-	//private JFrame frame;
+public class ChatClient extends JFrame implements Runnable {
+
+	static Socket socket = null;
+	static BufferedReader in = null;
+    static PrintWriter out = null;
+    private JFrame frame;
 	private JPanel contentPane;
 	private JScrollPane scrollPane;
-	private JTextArea messageArea;
-	private JTextField textField;
+	private static JTextArea messageArea;
+	private static JTextField textField;
+	static BufferedReader ulazKonzola = null;
+	static boolean kraj = false;
 	
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ChatClient client = new ChatClient();
-			        client.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			        client.frame.setVisible(true);
-			        client.run();
-					//ChatClientGlobal frame = new ChatClientGlobal();
-					//frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
 	public ChatClient() {
-		setTitle("ChatRoom");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 475);
+		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
 		contentPane.add(getScrollPane(), BorderLayout.CENTER);
-		contentPane.add(getTextField_1(), BorderLayout.NORTH);
+		contentPane.add(getTextField(), BorderLayout.NORTH);
 		pack();
 	}
 	private JScrollPane getScrollPane() {
@@ -80,60 +58,123 @@ public class ChatClient extends JFrame {
 	private JTextArea getMessageArea() {
 		if (messageArea == null) {
 			messageArea = new JTextArea();
-			messageArea.setEditable(false); // here will appear conversation
-			messageArea.setRows(40);
-			messageArea.setColumns(8);
+			messageArea.setEditable(false);
 		}
 		return messageArea;
 	}
-	private JTextField getTextField_1() {
+	private JTextField getTextField() {
 		if (textField == null) {
 			textField = new JTextField();
-			textField.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					
-					out.println(textField.getText());
-	                textField.setText("");
+			/*textField.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					 out.println(textField.getText());
+		             textField.setText("");
 				}
-			});
+			});*/
 			textField.setEditable(false);
-			textField.setColumns(40);
+			textField.setColumns(10);
 		}
 		return textField;
 	}
 	
-	//Prompt for and return the address of the server --> then we will have in run(): String serverAddress
-	private String getServerAddress() {
-        return JOptionPane.showInputDialog(frame,"Enter IP Address of the Server:",
-            "Welcome to the ChatRoom",
-            JOptionPane.QUESTION_MESSAGE);
-           
-    }
+	/*private String getServerAddress() {
+		return JOptionPane.showInputDialog(
+				frame,
+				"Enter IP Address of the Server:",
+				"Welcome to the Chatter",
+				JOptionPane.QUESTION_MESSAGE);
+	}*/
 	
-	//Prompt for and return the screen name
 	private String getUserName() {
-        return JOptionPane.showInputDialog(
-            frame,
-            "Choose a screen name:",
-            "Screen name selection",
-            JOptionPane.PLAIN_MESSAGE);
-    }
-	private void run() throws IOException {
+		return JOptionPane.showInputDialog(
+				frame,
+				"Choose a screen name:",
+				"Screen name selection",
+				JOptionPane.PLAIN_MESSAGE);
+	}
+  
 
-        // Make connection 
-        String serverAddress = getServerAddress();
-        Socket socket = new Socket(serverAddress, 30121); // if uncomment previous line then "localhost" => serverAddress
-        in = new BufferedReader(new InputStreamReader(
-            socket.getInputStream()));
-        out = new PrintWriter(socket.getOutputStream(), true);
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) throws Exception {
+		//EventQueue.invokeLater(new Runnable() {
+			//public void run() {
+				try {
+				    socket = new Socket("localhost", 30121);
+					
+					ulazKonzola = new BufferedReader(new InputStreamReader(System.in));
+					
+			        in = new BufferedReader(new InputStreamReader(
+			            socket.getInputStream()));
+			        out = new PrintWriter(socket.getOutputStream());
+			        
+				
+					ChatClient frame = new ChatClient();
+					frame.setVisible(true);
+	
+					new Thread (new ChatClient()).start(); 
+					
+					while (!kraj){
+						textField.addActionListener(new ActionListener() {
+							public void actionPerformed(ActionEvent arg0) {
+								 out.println(textField.getText());
+					             textField.setText("");
+							}
+						});
+					}
+					
+			        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			        
+			        //frame.run();
+					socket.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+	//});
+	
+	@Override
+	public void run() {
+		//String serverAddress = getServerAddress();
+	       /* Socket socket = new Socket("localhost", 9001);
+	        in = new BufferedReader(new InputStreamReader(
+	            socket.getInputStream()));
+	        out = new PrintWriter(socket.getOutputStream(), true);
+	*/
+		  String line ;
+		  try {
+			    
+				while((line = in.readLine())!= null) {
+					messageArea.append(line.substring(8) + "\n");
+					
+					if(line.indexOf("*** Dovidjenja") == 0) {
+						kraj = true;
+						return;
+					}
+				}
+				
+			} catch (IOException e) {
+				System.err.println("IOException: " + e);
+			}
+		 
+	        /*while (!kraj) {
+	            String line = in.readLine();
+	            if (line.startsWith("SUBMITNAME")) {
+	                out.println(getName());
+	            } else if (line.startsWith("NAMEACCEPTED")) {
+	                textField.setEditable(true);
+	            } else if (line.startsWith("MESSAGE")) {
+	              
+	            	messageArea.append(line.substring(8) + "\n");
+	            }
+	        }*/
+	    }
+		
+	}
+		
 
-        // Process all messages from server
-        while (true) {
-            String line = in.readLine();
-           
-            textField.setEditable(true); // clients will text here
-            messageArea.append(line.substring(8) + "\n"); // 8 because of number of columns 
-            
-        }
-    }
-}
+
+	
+	
+
