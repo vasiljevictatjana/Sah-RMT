@@ -6,10 +6,17 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import elements.Figura;
+import elements.Tabla;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Rectangle;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -19,62 +26,62 @@ public class BoardButton extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel panel;
-	private JButton btnNewButton;
-	private JButton button;
-	private JButton button_1;
-	private JButton button_2;
-	private JButton button_3;
-	private JButton button_4;
-	private JButton button_5;
-	private JButton button_7;
-	private JButton button_6;
-	private JButton button_8;
-	private JButton button_9;
-	private JButton button_10;
-	private JButton button_11;
-	private JButton button_12;
-	private JButton button_13;
-	private JButton button_14;
-	private JButton button_15;
-	private JButton button_16;
-	private JButton button_17;
-	private JButton button_18;
-	private JButton button_19;
-	private JButton button_20;
-	private JButton button_21;
-	private JButton button_22;
-	private JButton button_23;
-	private JButton button_24;
-	private JButton button_25;
-	private JButton button_26;
-	private JButton button_27;
-	private JButton button_28;
-	private JButton button_29;
-	private JButton button_30;
-	private JButton button_31;
-	private JButton button_32;
-	private JButton button_33;
-	private JButton button_34;
-	private JButton button_35;
-	private JButton button_36;
-	private JButton button_37;
-	private JButton button_38;
-	private JButton button_39;
-	private JButton button_40;
-	private JButton button_41;
-	private JButton button_42;
-	private JButton button_43;
-	private JButton button_44;
-	private JButton button_45;
-	private JButton button_46;
-	private JButton button_47;
-	private JButton button_48;
-	private JButton button_49;
-	private JButton button_50;
-	private JButton button_51;
-	private JButton button_52;
-	private JButton button_53;
-	private JButton button_54;
+	private JButton a8;
+	private JButton b8;
+	private JButton c8;
+	private JButton d8;
+	private JButton e8;
+	private JButton f8;
+	private JButton g8;
+	private JButton h8;
+	private JButton a7;
+	private JButton b7;
+	private JButton c7;
+	private JButton d7;
+	private JButton e7;
+	private JButton f7;
+	private JButton g7;
+	private JButton h7;
+	private JButton a6;
+	private JButton b6;
+	private JButton c6;
+	private JButton d6;
+	private JButton e6;
+	private JButton f6;
+	private JButton g6;
+	private JButton h6;
+	private JButton a5;
+	private JButton b5;
+	private JButton c5;
+	private JButton d5;
+	private JButton e5;
+	private JButton f5;
+	private JButton g5;
+	private JButton h5;
+	private JButton a4;
+	private JButton b4;
+	private JButton c4;
+	private JButton d4;
+	private JButton e4;
+	private JButton f4;
+	private JButton g4;
+	private JButton h4;
+	private JButton a3;
+	private JButton b3;
+	private JButton c3;
+	private JButton d3;
+	private JButton e3;
+	private JButton f3;
+	private JButton g3;
+	private JButton h3;
+	private JButton a2;
+	private JButton b2;
+	private JButton c2;
+	private JButton d2;
+	private JButton e2;
+	private JButton f2;
+	private JButton g2;
+	private JButton h2;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
 	private JLabel lblB;
@@ -98,14 +105,14 @@ public class BoardButton extends JFrame {
 	private JLabel label_11;
 	private JLabel label_12;
 	private JLabel label_13;
-	private JButton button_55;
-	private JButton button_56;
-	private JButton button_57;
-	private JButton button_58;
-	private JButton button_59;
-	private JButton button_60;
-	private JButton button_61;
-	private JButton button_62;
+	private JButton a1;
+	private JButton b1;
+	private JButton c1;
+	private JButton d1;
+	private JButton e1;
+	private JButton f1;
+	private JButton g1;
+	private JButton h1;
 	private JLabel lblNewLabel_2;
 	private JLabel label_14;
 	private JLabel label_15;
@@ -115,7 +122,10 @@ public class BoardButton extends JFrame {
 	private JLabel label_19;
 	private JLabel label_20;
 	private JLabel label_21;
-
+	private ArrayList<JButton> polja = new ArrayList<>(Arrays.asList( g1, g2, g3, g4, g5,g6,g7,g8,a1,a2,a3,a4,a5,a6,a7,a8,b1,b2,b3,b4,b5,b6,b7,b8,c1,c2,c3,c4,c5,c6,c7,c8,d1,d2,d3,d4,d5,d6,d7,d8,e1,e2,e3,e4,e5,e6,e7,e8,f1,f2,f3,f4,f5,f6,f7,f8,h1,h2,h3,h4,h5,h6,h7,h8));
+	
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -125,6 +135,8 @@ public class BoardButton extends JFrame {
 				try {
 					BoardButton frame = new BoardButton();
 					frame.setVisible(true);
+					
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -146,103 +158,157 @@ public class BoardButton extends JFrame {
 		contentPane.add(getPanel(), BorderLayout.CENTER);
 		
 		
-		btnNewButton.setIcon(new ImageIcon("art/pieces/plain/BR.gif"));
-		button.setIcon(new ImageIcon("art/pieces/plain/BN.gif"));
-		button_1.setIcon(new ImageIcon("art/pieces/plain/BB.gif"));
-		button_2.setIcon(new ImageIcon("art/pieces/plain/BQ.gif"));
-		button_3.setIcon(new ImageIcon("art/pieces/plain/BK.gif"));
-		button_4.setIcon(new ImageIcon("art/pieces/plain/BB.gif"));
-		button_5.setIcon(new ImageIcon("art/pieces/plain/BN.gif"));
-		button_7.setIcon(new ImageIcon("art/pieces/plain/BR.gif"));
-		button_6.setIcon(new ImageIcon("art/pieces/plain/BP.gif"));
-		button_8.setIcon(new ImageIcon("art/pieces/plain/BP.gif"));
-		button_9.setIcon(new ImageIcon("art/pieces/plain/BP.gif"));
-		button_10.setIcon(new ImageIcon("art/pieces/plain/BP.gif"));
-		button_11.setIcon(new ImageIcon("art/pieces/plain/BP.gif"));
-		button_12.setIcon(new ImageIcon("art/pieces/plain/BP.gif"));
-		button_13.setIcon(new ImageIcon("art/pieces/plain/BP.gif"));
-		button_14.setIcon(new ImageIcon("art/pieces/plain/BP.gif"));
-		button_55.setIcon(new ImageIcon("art/pieces/plain/WR.gif"));
-		button_56.setIcon(new ImageIcon("art/pieces/plain/WN.gif"));
-		button_57.setIcon(new ImageIcon("art/pieces/plain/WB.gif"));
-		button_58.setIcon(new ImageIcon("art/pieces/plain/WQ.gif"));
-		button_59.setIcon(new ImageIcon("art/pieces/plain/WK.gif"));
-		button_60.setIcon(new ImageIcon("art/pieces/plain/WB.gif"));
-		button_61.setIcon(new ImageIcon("art/pieces/plain/WN.gif"));
-		button_62.setIcon(new ImageIcon("art/pieces/plain/WR.gif"));
-		button_47.setIcon(new ImageIcon("art/pieces/plain/WP.gif"));
-		button_48.setIcon(new ImageIcon("art/pieces/plain/WP.gif"));
-		button_49.setIcon(new ImageIcon("art/pieces/plain/WP.gif"));
-		button_50.setIcon(new ImageIcon("art/pieces/plain/WP.gif"));
-		button_51.setIcon(new ImageIcon("art/pieces/plain/WP.gif"));
-		button_52.setIcon(new ImageIcon("art/pieces/plain/WP.gif"));
-		button_53.setIcon(new ImageIcon("art/pieces/plain/WP.gif"));
-		button_54.setIcon(new ImageIcon("art/pieces/plain/WP.gif"));
+		
+		a8.setIcon(new ImageIcon("art/pieces/plain/BR.gif"));
+		b8.setIcon(new ImageIcon("art/pieces/plain/BN.gif"));
+		c8.setIcon(new ImageIcon("art/pieces/plain/BB.gif"));
+		d8.setIcon(new ImageIcon("art/pieces/plain/BQ.gif"));
+		e8.setIcon(new ImageIcon("art/pieces/plain/BK.gif"));
+		f8.setIcon(new ImageIcon("art/pieces/plain/BB.gif"));
+		g8.setIcon(new ImageIcon("art/pieces/plain/BN.gif"));
+		h8.setIcon(new ImageIcon("art/pieces/plain/BR.gif"));
+		a7.setIcon(new ImageIcon("art/pieces/plain/BP.gif"));
+		b7.setIcon(new ImageIcon("art/pieces/plain/BP.gif"));
+		c7.setIcon(new ImageIcon("art/pieces/plain/BP.gif"));
+		d7.setIcon(new ImageIcon("art/pieces/plain/BP.gif"));
+		e7.setIcon(new ImageIcon("art/pieces/plain/BP.gif"));
+		f7.setIcon(new ImageIcon("art/pieces/plain/BP.gif"));
+		g7.setIcon(new ImageIcon("art/pieces/plain/BP.gif"));
+		h7.setIcon(new ImageIcon("art/pieces/plain/BP.gif"));
+		a1.setIcon(new ImageIcon("art/pieces/plain/WR.gif"));
+		b1.setIcon(new ImageIcon("art/pieces/plain/WN.gif"));
+		c1.setIcon(new ImageIcon("art/pieces/plain/WB.gif"));
+		d1.setIcon(new ImageIcon("art/pieces/plain/WQ.gif"));
+		e1.setIcon(new ImageIcon("art/pieces/plain/WK.gif"));
+		f1.setIcon(new ImageIcon("art/pieces/plain/WB.gif"));
+		g1.setIcon(new ImageIcon("art/pieces/plain/WN.gif"));
+		h1.setIcon(new ImageIcon("art/pieces/plain/WR.gif"));
+		a2.setIcon(new ImageIcon("art/pieces/plain/WP.gif"));
+		b2.setIcon(new ImageIcon("art/pieces/plain/WP.gif"));
+		c2.setIcon(new ImageIcon("art/pieces/plain/WP.gif"));
+		d2.setIcon(new ImageIcon("art/pieces/plain/WP.gif"));
+		e2.setIcon(new ImageIcon("art/pieces/plain/WP.gif"));
+		f2.setIcon(new ImageIcon("art/pieces/plain/WP.gif"));
+		g2.setIcon(new ImageIcon("art/pieces/plain/WP.gif"));
+		h2.setIcon(new ImageIcon("art/pieces/plain/WP.gif"));
 		
 		
+		
+		GenerisiFigure();
 	}
 
+	public void Move()
+	{
+		//TODO
+		
+	}
+	
+	
+	ArrayList<Figura> beleFigure = new ArrayList<Figura>();
+	ArrayList<Figura> crneFigure = new ArrayList<Figura>();
+	
+	ArrayList<Figura> pojedeneBele = new ArrayList<>();
+	ArrayList<Figura> pojedeneCrne = new ArrayList<>();
+	
+	public void GenerisiFigure()
+	{
+		pojedeneBele = new ArrayList<>();
+		pojedeneCrne = new ArrayList<>();
+		crneFigure = new ArrayList<>();
+		beleFigure = new ArrayList<>();
+		
+		//bele
+		for (int i = 0; i < 8; i++) 
+		{
+			beleFigure.add(new Figura("art/pieces/plain/WP.gif", "w", "p"));
+		}
+		for (int i = 0; i < 2; i++) 
+		{
+			beleFigure.add(new Figura("art/pieces/plain/WN.gif","w", "n"));
+			beleFigure.add(new Figura("art/pieces/plain/WR.gif","w", "r"));
+			beleFigure.add(new Figura("art/pieces/plain/WB.gif","w", "b"));
+		}
+		beleFigure.add(new Figura("art/pieces/plain/WK.gif","w", "k"));
+		beleFigure.add(new Figura("art/pieces/plain/WQ.gif","w", "q"));
+		
+		
+		//crne
+		for (int i = 0; i < 8; i++) 
+		{
+			crneFigure.add(new Figura("art/pieces/plain/WP.gif", "b", "p"));
+		}
+		for (int i = 0; i < 2; i++) 
+		{
+			crneFigure.add(new Figura("art/pieces/plain/WN.gif","b", "n"));
+			crneFigure.add(new Figura("art/pieces/plain/WR.gif","b", "r"));
+			crneFigure.add(new Figura("art/pieces/plain/WB.gif","b", "b"));
+		}
+		crneFigure.add(new Figura("art/pieces/plain/WK.gif","b", "k"));
+		crneFigure.add(new Figura("art/pieces/plain/WQ.gif","b", "q"));
+		
+	}
+	
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
 			panel.setBounds(new Rectangle(0, 0, 400, 400));
 			panel.setLayout(null);
-			panel.add(getBtnNewButton());
-			panel.add(getButton());
-			panel.add(getButton_1());
-			panel.add(getButton_2());
-			panel.add(getButton_3());
-			panel.add(getButton_4());
-			panel.add(getButton_5());
-			panel.add(getButton_7());
-			panel.add(getButton_6());
-			panel.add(getButton_8());
-			panel.add(getButton_9());
-			panel.add(getButton_10());
-			panel.add(getButton_11());
-			panel.add(getButton_12());
-			panel.add(getButton_13());
-			panel.add(getButton_14());
-			panel.add(getButton_15());
-			panel.add(getButton_16());
-			panel.add(getButton_17());
-			panel.add(getButton_18());
-			panel.add(getButton_19());
-			panel.add(getButton_20());
-			panel.add(getButton_21());
-			panel.add(getButton_22());
-			panel.add(getButton_23());
-			panel.add(getButton_24());
-			panel.add(getButton_25());
-			panel.add(getButton_26());
-			panel.add(getButton_27());
-			panel.add(getButton_28());
-			panel.add(getButton_29());
-			panel.add(getButton_30());
-			panel.add(getButton_31());
-			panel.add(getButton_32());
-			panel.add(getButton_33());
-			panel.add(getButton_34());
-			panel.add(getButton_35());
-			panel.add(getButton_36());
-			panel.add(getButton_37());
-			panel.add(getButton_38());
-			panel.add(getButton_39());
-			panel.add(getButton_40());
-			panel.add(getButton_41());
-			panel.add(getButton_42());
-			panel.add(getButton_43());
-			panel.add(getButton_44());
-			panel.add(getButton_45());
-			panel.add(getButton_46());
-			panel.add(getButton_47());
-			panel.add(getButton_48());
-			panel.add(getButton_49());
-			panel.add(getButton_50());
-			panel.add(getButton_51());
-			panel.add(getButton_52());
-			panel.add(getButton_53());
-			panel.add(getButton_54());
+			panel.add(getA8());
+			panel.add(getB8());
+			panel.add(getC8());
+			panel.add(getD8());
+			panel.add(getE8());
+			panel.add(getF8());
+			panel.add(getG8());
+			panel.add(getH8());
+			panel.add(getA7());
+			panel.add(getB7());
+			panel.add(getC7());
+			panel.add(getD7());
+			panel.add(getE7());
+			panel.add(getF7());
+			panel.add(getG7());
+			panel.add(getH7());
+			panel.add(getA6());
+			panel.add(getB6());
+			panel.add(getC6());
+			panel.add(getD6());
+			panel.add(getE6());
+			panel.add(getF6());
+			panel.add(getG6());
+			panel.add(getH6());
+			panel.add(getA5());
+			panel.add(getB5());
+			panel.add(getC5());
+			panel.add(getD5());
+			panel.add(getE5());
+			panel.add(getF5());
+			panel.add(getG5());
+			panel.add(getH5());
+			panel.add(getA4());
+			panel.add(getB4());
+			panel.add(getC4());
+			panel.add(getD4());
+			panel.add(getE4());
+			panel.add(getF4());
+			panel.add(getG4());
+			panel.add(getH4());
+			panel.add(getA3());
+			panel.add(getB3());
+			panel.add(getC3());
+			panel.add(getD3());
+			panel.add(getE3());
+			panel.add(getF3());
+			panel.add(getG3());
+			panel.add(getH3());
+			panel.add(getA2());
+			panel.add(getB2());
+			panel.add(getC2());
+			panel.add(getD2());
+			panel.add(getE2());
+			panel.add(getF2());
+			panel.add(getG2());
+			panel.add(getH2());
 			panel.add(getLblNewLabel());
 			panel.add(getLblNewLabel_1());
 			panel.add(getLblB());
@@ -266,14 +332,14 @@ public class BoardButton extends JFrame {
 			panel.add(getLabel_11());
 			panel.add(getLabel_12());
 			panel.add(getLabel_13());
-			panel.add(getButton_55());
-			panel.add(getButton_56());
-			panel.add(getButton_57());
-			panel.add(getButton_58());
-			panel.add(getButton_59());
-			panel.add(getButton_60());
-			panel.add(getButton_61());
-			panel.add(getButton_62());
+			panel.add(getA1());
+			panel.add(getB1());
+			panel.add(getC1());
+			panel.add(getD1());
+			panel.add(getE1());
+			panel.add(getF1());
+			panel.add(getG1());
+			panel.add(getH1());
 			panel.add(getLblNewLabel_2());
 			panel.add(getLabel_14());
 			panel.add(getLabel_15());
@@ -286,466 +352,466 @@ public class BoardButton extends JFrame {
 		}
 		return panel;
 	}
-	private JButton getBtnNewButton() {
-		if (btnNewButton == null) {
-			btnNewButton = new JButton("");
-			btnNewButton.setBackground(Color.WHITE);
-			btnNewButton.setBounds(new Rectangle(0, 0, 50, 50));
-			btnNewButton.setBounds(50, 50, 50, 50);
+	private JButton getA8() {
+		if (a8 == null) {
+			a8 = new JButton("");
+			a8.setBackground(Color.WHITE);
+			a8.setBounds(new Rectangle(0, 0, 50, 50));
+			a8.setBounds(50, 50, 50, 50);
 		}
-		return btnNewButton;
+		return a8;
 	}
-	private JButton getButton() {
-		if (button == null) {
-			button = new JButton("");
-			button.setBackground(new Color(210, 105, 30));
-			button.setBounds(100, 50, 50, 50);
+	private JButton getB8() {
+		if (b8 == null) {
+			b8 = new JButton("");
+			b8.setBackground(new Color(210, 105, 30));
+			b8.setBounds(100, 50, 50, 50);
 		}
-		return button;
+		return b8;
 	}
-	private JButton getButton_1() {
-		if (button_1 == null) {
-			button_1 = new JButton("");
-			button_1.setBackground(Color.WHITE);
-			button_1.setBounds(150, 50, 50, 50);
+	private JButton getC8() {
+		if (c8 == null) {
+			c8 = new JButton("");
+			c8.setBackground(Color.WHITE);
+			c8.setBounds(150, 50, 50, 50);
 		}
-		return button_1;
+		return c8;
 	}
-	private JButton getButton_2() {
-		if (button_2 == null) {
-			button_2 = new JButton("");
-			button_2.setBackground(new Color(210, 105, 30));
-			button_2.setBounds(200, 50, 50, 50);
+	private JButton getD8() {
+		if (d8 == null) {
+			d8 = new JButton("");
+			d8.setBackground(new Color(210, 105, 30));
+			d8.setBounds(200, 50, 50, 50);
 		}
-		return button_2;
+		return d8;
 	}
-	private JButton getButton_3() {
-		if (button_3 == null) {
-			button_3 = new JButton("");
-			button_3.setBackground(Color.WHITE);
-			button_3.setBounds(250, 50, 50, 50);
+	private JButton getE8() {
+		if (e8 == null) {
+			e8 = new JButton("");
+			e8.setBackground(Color.WHITE);
+			e8.setBounds(250, 50, 50, 50);
 		}
-		return button_3;
+		return e8;
 	}
-	private JButton getButton_4() {
-		if (button_4 == null) {
-			button_4 = new JButton("");
-			button_4.setBackground(new Color(210, 105, 30));
-			button_4.setBounds(300, 50, 50, 50);
+	private JButton getF8() {
+		if (f8 == null) {
+			f8 = new JButton("");
+			f8.setBackground(new Color(210, 105, 30));
+			f8.setBounds(300, 50, 50, 50);
 		}
-		return button_4;
+		return f8;
 	}
-	private JButton getButton_5() {
-		if (button_5 == null) {
-			button_5 = new JButton("");
-			button_5.setBackground(Color.WHITE);
-			button_5.setBounds(350, 50, 50, 50);
+	private JButton getG8() {
+		if (g8 == null) {
+			g8 = new JButton("");
+			g8.setBackground(Color.WHITE);
+			g8.setBounds(350, 50, 50, 50);
 		}
-		return button_5;
+		return g8;
 	}
-	private JButton getButton_7() {
-		if (button_7 == null) {
-			button_7 = new JButton("");
-			button_7.setBackground(new Color(210, 105, 30));
-			button_7.setBounds(400, 50, 50, 50);
+	private JButton getH8() {
+		if (h8 == null) {
+			h8 = new JButton("");
+			h8.setBackground(new Color(210, 105, 30));
+			h8.setBounds(400, 50, 50, 50);
 		}
-		return button_7;
+		return h8;
 	}
-	private JButton getButton_6() {
-		if (button_6 == null) {
-			button_6 = new JButton("");
-			button_6.setBackground(new Color(210, 105, 30));
-			button_6.setBounds(new Rectangle(0, 0, 50, 50));
-			button_6.setBounds(50, 100, 50, 50);
+	private JButton getA7() {
+		if (a7 == null) {
+			a7 = new JButton("");
+			a7.setBackground(new Color(210, 105, 30));
+			a7.setBounds(new Rectangle(0, 0, 50, 50));
+			a7.setBounds(50, 100, 50, 50);
 		}
-		return button_6;
+		return a7;
 	}
-	private JButton getButton_8() {
-		if (button_8 == null) {
-			button_8 = new JButton("");
-			button_8.setBackground(Color.WHITE);
-			button_8.setBounds(100, 100, 50, 50);
+	private JButton getB7() {
+		if (b7 == null) {
+			b7 = new JButton("");
+			b7.setBackground(Color.WHITE);
+			b7.setBounds(100, 100, 50, 50);
 		}
-		return button_8;
+		return b7;
 	}
-	private JButton getButton_9() {
-		if (button_9 == null) {
-			button_9 = new JButton("");
-			button_9.setBackground(new Color(210, 105, 30));
-			button_9.setBounds(150, 100, 50, 50);
+	private JButton getC7() {
+		if (c7 == null) {
+			c7 = new JButton("");
+			c7.setBackground(new Color(210, 105, 30));
+			c7.setBounds(150, 100, 50, 50);
 		}
-		return button_9;
+		return c7;
 	}
-	private JButton getButton_10() {
-		if (button_10 == null) {
-			button_10 = new JButton("");
-			button_10.setBackground(Color.WHITE);
-			button_10.setBounds(200, 100, 50, 50);
+	private JButton getD7() {
+		if (d7 == null) {
+			d7 = new JButton("");
+			d7.setBackground(Color.WHITE);
+			d7.setBounds(200, 100, 50, 50);
 		}
-		return button_10;
+		return d7;
 	}
-	private JButton getButton_11() {
-		if (button_11 == null) {
-			button_11 = new JButton("");
-			button_11.setBackground(new Color(210, 105, 30));
-			button_11.setBounds(250, 100, 50, 50);
+	private JButton getE7() {
+		if (e7 == null) {
+			e7 = new JButton("");
+			e7.setBackground(new Color(210, 105, 30));
+			e7.setBounds(250, 100, 50, 50);
 		}
-		return button_11;
+		return e7;
 	}
-	private JButton getButton_12() {
-		if (button_12 == null) {
-			button_12 = new JButton("");
-			button_12.setBackground(Color.WHITE);
-			button_12.setBounds(300, 100, 50, 50);
+	private JButton getF7() {
+		if (f7 == null) {
+			f7 = new JButton("");
+			f7.setBackground(Color.WHITE);
+			f7.setBounds(300, 100, 50, 50);
 		}
-		return button_12;
+		return f7;
 	}
-	private JButton getButton_13() {
-		if (button_13 == null) {
-			button_13 = new JButton("");
-			button_13.setBackground(new Color(210, 105, 30));
-			button_13.setBounds(350, 100, 50, 50);
+	private JButton getG7() {
+		if (g7 == null) {
+			g7 = new JButton("");
+			g7.setBackground(new Color(210, 105, 30));
+			g7.setBounds(350, 100, 50, 50);
 		}
-		return button_13;
+		return g7;
 	}
-	private JButton getButton_14() {
-		if (button_14 == null) {
-			button_14 = new JButton("");
-			button_14.setBackground(Color.WHITE);
-			button_14.setBounds(400, 100, 50, 50);
+	private JButton getH7() {
+		if (h7 == null) {
+			h7 = new JButton("");
+			h7.setBackground(Color.WHITE);
+			h7.setBounds(400, 100, 50, 50);
 		}
-		return button_14;
+		return h7;
 	}
-	private JButton getButton_15() {
-		if (button_15 == null) {
-			button_15 = new JButton("");
-			button_15.setBackground(Color.WHITE);
-			button_15.setBounds(new Rectangle(0, 0, 50, 50));
-			button_15.setBounds(50, 150, 50, 50);
+	private JButton getA6() {
+		if (a6 == null) {
+			a6 = new JButton("");
+			a6.setBackground(Color.WHITE);
+			a6.setBounds(new Rectangle(0, 0, 50, 50));
+			a6.setBounds(50, 150, 50, 50);
 		}
-		return button_15;
+		return a6;
 	}
-	private JButton getButton_16() {
-		if (button_16 == null) {
-			button_16 = new JButton("");
-			button_16.setBackground(new Color(210, 105, 30));
-			button_16.setBounds(100, 150, 50, 50);
+	private JButton getB6() {
+		if (b6 == null) {
+			b6 = new JButton("");
+			b6.setBackground(new Color(210, 105, 30));
+			b6.setBounds(100, 150, 50, 50);
 		}
-		return button_16;
+		return b6;
 	}
-	private JButton getButton_17() {
-		if (button_17 == null) {
-			button_17 = new JButton("");
-			button_17.setBackground(Color.WHITE);
-			button_17.setBounds(150, 150, 50, 50);
+	private JButton getC6() {
+		if (c6 == null) {
+			c6 = new JButton("");
+			c6.setBackground(Color.WHITE);
+			c6.setBounds(150, 150, 50, 50);
 		}
-		return button_17;
+		return c6;
 	}
-	private JButton getButton_18() {
-		if (button_18 == null) {
-			button_18 = new JButton("");
-			button_18.setBackground(new Color(210, 105, 30));
-			button_18.setBounds(200, 150, 50, 50);
+	private JButton getD6() {
+		if (d6 == null) {
+			d6 = new JButton("");
+			d6.setBackground(new Color(210, 105, 30));
+			d6.setBounds(200, 150, 50, 50);
 		}
-		return button_18;
+		return d6;
 	}
-	private JButton getButton_19() {
-		if (button_19 == null) {
-			button_19 = new JButton("");
-			button_19.setBackground(Color.WHITE);
-			button_19.setBounds(250, 150, 50, 50);
+	private JButton getE6() {
+		if (e6 == null) {
+			e6 = new JButton("");
+			e6.setBackground(Color.WHITE);
+			e6.setBounds(250, 150, 50, 50);
 		}
-		return button_19;
+		return e6;
 	}
-	private JButton getButton_20() {
-		if (button_20 == null) {
-			button_20 = new JButton("");
-			button_20.setBackground(new Color(210, 105, 30));
-			button_20.setBounds(300, 150, 50, 50);
+	private JButton getF6() {
+		if (f6 == null) {
+			f6 = new JButton("");
+			f6.setBackground(new Color(210, 105, 30));
+			f6.setBounds(300, 150, 50, 50);
 		}
-		return button_20;
+		return f6;
 	}
-	private JButton getButton_21() {
-		if (button_21 == null) {
-			button_21 = new JButton("");
-			button_21.setBackground(new Color(255, 255, 255));
-			button_21.setBounds(350, 150, 50, 50);
+	private JButton getG6() {
+		if (g6 == null) {
+			g6 = new JButton("");
+			g6.setBackground(new Color(255, 255, 255));
+			g6.setBounds(350, 150, 50, 50);
 		}
-		return button_21;
+		return g6;
 	}
-	private JButton getButton_22() {
-		if (button_22 == null) {
-			button_22 = new JButton("");
-			button_22.setBackground(new Color(210, 105, 30));
-			button_22.setBounds(400, 150, 50, 50);
+	private JButton getH6() {
+		if (h6 == null) {
+			h6 = new JButton("");
+			h6.setBackground(new Color(210, 105, 30));
+			h6.setBounds(400, 150, 50, 50);
 		}
-		return button_22;
+		return h6;
 	}
-	private JButton getButton_23() {
-		if (button_23 == null) {
-			button_23 = new JButton("");
-			button_23.setBackground(new Color(210, 105, 30));
-			button_23.setBounds(new Rectangle(0, 0, 50, 50));
-			button_23.setBounds(50, 200, 50, 50);
+	private JButton getA5() {
+		if (a5 == null) {
+			a5 = new JButton("");
+			a5.setBackground(new Color(210, 105, 30));
+			a5.setBounds(new Rectangle(0, 0, 50, 50));
+			a5.setBounds(50, 200, 50, 50);
 		}
-		return button_23;
+		return a5;
 	}
-	private JButton getButton_24() {
-		if (button_24 == null) {
-			button_24 = new JButton("");
-			button_24.setBackground(Color.WHITE);
-			button_24.setBounds(100, 200, 50, 50);
+	private JButton getB5() {
+		if (b5 == null) {
+			b5 = new JButton("");
+			b5.setBackground(Color.WHITE);
+			b5.setBounds(100, 200, 50, 50);
 		}
-		return button_24;
+		return b5;
 	}
-	private JButton getButton_25() {
-		if (button_25 == null) {
-			button_25 = new JButton("");
-			button_25.setBackground(new Color(210, 105, 30));
-			button_25.setBounds(150, 200, 50, 50);
+	private JButton getC5() {
+		if (c5 == null) {
+			c5 = new JButton("");
+			c5.setBackground(new Color(210, 105, 30));
+			c5.setBounds(150, 200, 50, 50);
 		}
-		return button_25;
+		return c5;
 	}
-	private JButton getButton_26() {
-		if (button_26 == null) {
-			button_26 = new JButton("");
-			button_26.setBackground(Color.WHITE);
-			button_26.setBounds(200, 200, 50, 50);
+	private JButton getD5() {
+		if (d5 == null) {
+			d5 = new JButton("");
+			d5.setBackground(Color.WHITE);
+			d5.setBounds(200, 200, 50, 50);
 		}
-		return button_26;
+		return d5;
 	}
-	private JButton getButton_27() {
-		if (button_27 == null) {
-			button_27 = new JButton("");
-			button_27.setBackground(new Color(210, 105, 30));
-			button_27.setBounds(250, 200, 50, 50);
+	private JButton getE5() {
+		if (e5 == null) {
+			e5 = new JButton("");
+			e5.setBackground(new Color(210, 105, 30));
+			e5.setBounds(250, 200, 50, 50);
 		}
-		return button_27;
+		return e5;
 	}
-	private JButton getButton_28() {
-		if (button_28 == null) {
-			button_28 = new JButton("");
-			button_28.setBackground(new Color(255, 255, 255));
-			button_28.setBounds(300, 200, 50, 50);
+	private JButton getF5() {
+		if (f5 == null) {
+			f5 = new JButton("");
+			f5.setBackground(new Color(255, 255, 255));
+			f5.setBounds(300, 200, 50, 50);
 		}
-		return button_28;
+		return f5;
 	}
-	private JButton getButton_29() {
-		if (button_29 == null) {
-			button_29 = new JButton("");
-			button_29.setBackground(new Color(210, 105, 30));
-			button_29.setBounds(350, 200, 50, 50);
+	private JButton getG5() {
+		if (g5 == null) {
+			g5 = new JButton("");
+			g5.setBackground(new Color(210, 105, 30));
+			g5.setBounds(350, 200, 50, 50);
 		}
-		return button_29;
+		return g5;
 	}
-	private JButton getButton_30() {
-		if (button_30 == null) {
-			button_30 = new JButton("");
-			button_30.setBackground(new Color(255, 255, 255));
-			button_30.setBounds(400, 200, 50, 50);
+	private JButton getH5() {
+		if (h5 == null) {
+			h5 = new JButton("");
+			h5.setBackground(new Color(255, 255, 255));
+			h5.setBounds(400, 200, 50, 50);
 		}
-		return button_30;
+		return h5;
 	}
-	private JButton getButton_31() {
-		if (button_31 == null) {
-			button_31 = new JButton("");
-			button_31.setBackground(Color.WHITE);
-			button_31.setBounds(new Rectangle(0, 0, 50, 50));
-			button_31.setBounds(50, 250, 50, 50);
+	private JButton getA4() {
+		if (a4 == null) {
+			a4 = new JButton("");
+			a4.setBackground(Color.WHITE);
+			a4.setBounds(new Rectangle(0, 0, 50, 50));
+			a4.setBounds(50, 250, 50, 50);
 		}
-		return button_31;
+		return a4;
 	}
-	private JButton getButton_32() {
-		if (button_32 == null) {
-			button_32 = new JButton("");
-			button_32.setBackground(new Color(210, 105, 30));
-			button_32.setBounds(100, 250, 50, 50);
+	private JButton getB4() {
+		if (b4 == null) {
+			b4 = new JButton("");
+			b4.setBackground(new Color(210, 105, 30));
+			b4.setBounds(100, 250, 50, 50);
 		}
-		return button_32;
+		return b4;
 	}
-	private JButton getButton_33() {
-		if (button_33 == null) {
-			button_33 = new JButton("");
-			button_33.setBackground(new Color(255, 255, 255));
-			button_33.setBounds(150, 250, 50, 50);
+	private JButton getC4() {
+		if (c4 == null) {
+			c4 = new JButton("");
+			c4.setBackground(new Color(255, 255, 255));
+			c4.setBounds(150, 250, 50, 50);
 		}
-		return button_33;
+		return c4;
 	}
-	private JButton getButton_34() {
-		if (button_34 == null) {
-			button_34 = new JButton("");
-			button_34.setBackground(new Color(210, 105, 30));
-			button_34.setBounds(200, 250, 50, 50);
+	private JButton getD4() {
+		if (d4 == null) {
+			d4 = new JButton("");
+			d4.setBackground(new Color(210, 105, 30));
+			d4.setBounds(200, 250, 50, 50);
 		}
-		return button_34;
+		return d4;
 	}
-	private JButton getButton_35() {
-		if (button_35 == null) {
-			button_35 = new JButton("");
-			button_35.setBackground(Color.WHITE);
-			button_35.setBounds(250, 250, 50, 50);
+	private JButton getE4() {
+		if (e4 == null) {
+			e4 = new JButton("");
+			e4.setBackground(Color.WHITE);
+			e4.setBounds(250, 250, 50, 50);
 		}
-		return button_35;
+		return e4;
 	}
-	private JButton getButton_36() {
-		if (button_36 == null) {
-			button_36 = new JButton("");
-			button_36.setBackground(new Color(210, 105, 30));
-			button_36.setBounds(300, 250, 50, 50);
+	private JButton getF4() {
+		if (f4 == null) {
+			f4 = new JButton("");
+			f4.setBackground(new Color(210, 105, 30));
+			f4.setBounds(300, 250, 50, 50);
 		}
-		return button_36;
+		return f4;
 	}
-	private JButton getButton_37() {
-		if (button_37 == null) {
-			button_37 = new JButton("");
-			button_37.setBackground(new Color(255, 255, 255));
-			button_37.setBounds(350, 250, 50, 50);
+	private JButton getG4() {
+		if (g4 == null) {
+			g4 = new JButton("");
+			g4.setBackground(new Color(255, 255, 255));
+			g4.setBounds(350, 250, 50, 50);
 		}
-		return button_37;
+		return g4;
 	}
-	private JButton getButton_38() {
-		if (button_38 == null) {
-			button_38 = new JButton("");
-			button_38.setBackground(new Color(210, 105, 30));
-			button_38.setBounds(400, 250, 50, 50);
+	private JButton getH4() {
+		if (h4 == null) {
+			h4 = new JButton("");
+			h4.setBackground(new Color(210, 105, 30));
+			h4.setBounds(400, 250, 50, 50);
 		}
-		return button_38;
+		return h4;
 	}
-	private JButton getButton_39() {
-		if (button_39 == null) {
-			button_39 = new JButton("");
-			button_39.setBackground(new Color(210, 105, 30));
-			button_39.setBounds(new Rectangle(0, 0, 50, 50));
-			button_39.setBounds(50, 300, 50, 50);
+	private JButton getA3() {
+		if (a3 == null) {
+			a3 = new JButton("");
+			a3.setBackground(new Color(210, 105, 30));
+			a3.setBounds(new Rectangle(0, 0, 50, 50));
+			a3.setBounds(50, 300, 50, 50);
 		}
-		return button_39;
+		return a3;
 	}
-	private JButton getButton_40() {
-		if (button_40 == null) {
-			button_40 = new JButton("");
-			button_40.setBackground(Color.WHITE);
-			button_40.setBounds(100, 300, 50, 50);
+	private JButton getB3() {
+		if (b3 == null) {
+			b3 = new JButton("");
+			b3.setBackground(Color.WHITE);
+			b3.setBounds(100, 300, 50, 50);
 		}
-		return button_40;
+		return b3;
 	}
-	private JButton getButton_41() {
-		if (button_41 == null) {
-			button_41 = new JButton("");
-			button_41.setBackground(new Color(210, 105, 30));
-			button_41.setBounds(150, 300, 50, 50);
+	private JButton getC3() {
+		if (c3 == null) {
+			c3 = new JButton("");
+			c3.setBackground(new Color(210, 105, 30));
+			c3.setBounds(150, 300, 50, 50);
 		}
-		return button_41;
+		return c3;
 	}
-	private JButton getButton_42() {
-		if (button_42 == null) {
-			button_42 = new JButton("");
-			button_42.setBackground(Color.WHITE);
-			button_42.setBounds(200, 300, 50, 50);
+	private JButton getD3() {
+		if (d3 == null) {
+			d3 = new JButton("");
+			d3.setBackground(Color.WHITE);
+			d3.setBounds(200, 300, 50, 50);
 		}
-		return button_42;
+		return d3;
 	}
-	private JButton getButton_43() {
-		if (button_43 == null) {
-			button_43 = new JButton("");
-			button_43.setBackground(new Color(210, 105, 30));
-			button_43.setBounds(250, 300, 50, 50);
+	private JButton getE3() {
+		if (e3 == null) {
+			e3 = new JButton("");
+			e3.setBackground(new Color(210, 105, 30));
+			e3.setBounds(250, 300, 50, 50);
 		}
-		return button_43;
+		return e3;
 	}
-	private JButton getButton_44() {
-		if (button_44 == null) {
-			button_44 = new JButton("");
-			button_44.setBackground(new Color(255, 255, 255));
-			button_44.setBounds(300, 300, 50, 50);
+	private JButton getF3() {
+		if (f3 == null) {
+			f3 = new JButton("");
+			f3.setBackground(new Color(255, 255, 255));
+			f3.setBounds(300, 300, 50, 50);
 		}
-		return button_44;
+		return f3;
 	}
-	private JButton getButton_45() {
-		if (button_45 == null) {
-			button_45 = new JButton("");
-			button_45.setBackground(new Color(210, 105, 30));
-			button_45.setBounds(350, 300, 50, 50);
+	private JButton getG3() {
+		if (g3 == null) {
+			g3 = new JButton("");
+			g3.setBackground(new Color(210, 105, 30));
+			g3.setBounds(350, 300, 50, 50);
 		}
-		return button_45;
+		return g3;
 	}
-	private JButton getButton_46() {
-		if (button_46 == null) {
-			button_46 = new JButton("");
-			button_46.setBackground(new Color(255, 255, 255));
-			button_46.setBounds(400, 300, 50, 50);
+	private JButton getH3() {
+		if (h3 == null) {
+			h3 = new JButton("");
+			h3.setBackground(new Color(255, 255, 255));
+			h3.setBounds(400, 300, 50, 50);
 		}
-		return button_46;
+		return h3;
 	}
-	private JButton getButton_47() {
-		if (button_47 == null) {
-			button_47 = new JButton("");
-			button_47.addActionListener(new ActionListener() {
+	private JButton getA2() {
+		if (a2 == null) {
+			a2 = new JButton("");
+			a2.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					button_39.setIcon(new ImageIcon("art/pieces/plain/WP.gif"));
-					button_47.setIcon(null);
+					a3.setIcon(new ImageIcon("art/pieces/plain/WP.gif"));
+					a2.setIcon(null);
 				}
 			});
-			button_47.setBackground(Color.WHITE);
-			button_47.setBounds(new Rectangle(0, 0, 50, 50));
-			button_47.setBounds(50, 350, 50, 50);
+			a2.setBackground(Color.WHITE);
+			a2.setBounds(new Rectangle(0, 0, 50, 50));
+			a2.setBounds(50, 350, 50, 50);
 		}
-		return button_47;
+		return a2;
 	}
-	private JButton getButton_48() {
-		if (button_48 == null) {
-			button_48 = new JButton("");
-			button_48.setBackground(new Color(210, 105, 30));
-			button_48.setBounds(100, 350, 50, 50);
+	private JButton getB2() {
+		if (b2 == null) {
+			b2 = new JButton("");
+			b2.setBackground(new Color(210, 105, 30));
+			b2.setBounds(100, 350, 50, 50);
 		}
-		return button_48;
+		return b2;
 	}
-	private JButton getButton_49() {
-		if (button_49 == null) {
-			button_49 = new JButton("");
-			button_49.setBackground(new Color(255, 255, 255));
-			button_49.setBounds(150, 350, 50, 50);
+	private JButton getC2() {
+		if (c2 == null) {
+			c2 = new JButton("");
+			c2.setBackground(new Color(255, 255, 255));
+			c2.setBounds(150, 350, 50, 50);
 		}
-		return button_49;
+		return c2;
 	}
-	private JButton getButton_50() {
-		if (button_50 == null) {
-			button_50 = new JButton("");
-			button_50.setBackground(new Color(210, 105, 30));
-			button_50.setBounds(200, 350, 50, 50);
+	private JButton getD2() {
+		if (d2 == null) {
+			d2 = new JButton("");
+			d2.setBackground(new Color(210, 105, 30));
+			d2.setBounds(200, 350, 50, 50);
 		}
-		return button_50;
+		return d2;
 	}
-	private JButton getButton_51() {
-		if (button_51 == null) {
-			button_51 = new JButton("");
-			button_51.setBackground(Color.WHITE);
-			button_51.setBounds(250, 350, 50, 50);
+	private JButton getE2() {
+		if (e2 == null) {
+			e2 = new JButton("");
+			e2.setBackground(Color.WHITE);
+			e2.setBounds(250, 350, 50, 50);
 		}
-		return button_51;
+		return e2;
 	}
-	private JButton getButton_52() {
-		if (button_52 == null) {
-			button_52 = new JButton("");
-			button_52.setBackground(new Color(210, 105, 30));
-			button_52.setBounds(300, 350, 50, 50);
+	private JButton getF2() {
+		if (f2 == null) {
+			f2 = new JButton("");
+			f2.setBackground(new Color(210, 105, 30));
+			f2.setBounds(300, 350, 50, 50);
 		}
-		return button_52;
+		return f2;
 	}
-	private JButton getButton_53() {
-		if (button_53 == null) {
-			button_53 = new JButton("");
-			button_53.setBackground(new Color(255, 255, 255));
-			button_53.setBounds(350, 350, 50, 50);
+	private JButton getG2() {
+		if (g2 == null) {
+			g2 = new JButton("");
+			g2.setBackground(new Color(255, 255, 255));
+			g2.setBounds(350, 350, 50, 50);
 		}
-		return button_53;
+		return g2;
 	}
-	private JButton getButton_54() {
-		if (button_54 == null) {
-			button_54 = new JButton("");
-			button_54.setBackground(new Color(210, 105, 30));
-			button_54.setBounds(400, 350, 50, 50);
+	private JButton getH2() {
+		if (h2 == null) {
+			h2 = new JButton("");
+			h2.setBackground(new Color(210, 105, 30));
+			h2.setBounds(400, 350, 50, 50);
 		}
-		return button_54;
+		return h2;
 	}
 	private JLabel getLblNewLabel() {
 		if (lblNewLabel == null) {
@@ -931,74 +997,74 @@ public class BoardButton extends JFrame {
 		}
 		return label_13;
 	}
-	private JButton getButton_55() {
-		if (button_55 == null) {
-			button_55 = new JButton("");
-			button_55.setBounds(new Rectangle(0, 0, 50, 50));
-			button_55.setBackground(new Color(210, 105, 30));
-			button_55.setBounds(50, 400, 50, 50);
+	private JButton getA1() {
+		if (a1 == null) {
+			a1 = new JButton("");
+			a1.setBounds(new Rectangle(0, 0, 50, 50));
+			a1.setBackground(new Color(210, 105, 30));
+			a1.setBounds(50, 400, 50, 50);
 		}
-		return button_55;
+		return a1;
 	}
-	private JButton getButton_56() {
-		if (button_56 == null) {
-			button_56 = new JButton("");
-			button_56.setBackground(Color.WHITE);
-			button_56.setBounds(100, 400, 50, 50);
+	private JButton getB1() {
+		if (b1 == null) {
+			b1 = new JButton("");
+			b1.setBackground(Color.WHITE);
+			b1.setBounds(100, 400, 50, 50);
 		}
-		return button_56;
+		return b1;
 	}
-	private JButton getButton_57() {
-		if (button_57 == null) {
-			button_57 = new JButton("");
-			button_57.setBackground(new Color(210, 105, 30));
-			button_57.setBounds(150, 400, 50, 50);
+	private JButton getC1() {
+		if (c1 == null) {
+			c1 = new JButton("");
+			c1.setBackground(new Color(210, 105, 30));
+			c1.setBounds(150, 400, 50, 50);
 		}
-		return button_57;
+		return c1;
 	}
-	private JButton getButton_58() {
-		if (button_58 == null) {
-			button_58 = new JButton("");
-			button_58.setBackground(Color.WHITE);
-			button_58.setBounds(200, 400, 50, 50);
+	private JButton getD1() {
+		if (d1 == null) {
+			d1 = new JButton("");
+			d1.setBackground(Color.WHITE);
+			d1.setBounds(200, 400, 50, 50);
 		}
-		return button_58;
+		return d1;
 	}
-	private JButton getButton_59() {
-		if (button_59 == null) {
-			button_59 = new JButton("");
-			button_59.setBackground(new Color(210, 105, 30));
-			button_59.setBounds(250, 400, 50, 50);
+	private JButton getE1() {
+		if (e1 == null) {
+			e1 = new JButton("");
+			e1.setBackground(new Color(210, 105, 30));
+			e1.setBounds(250, 400, 50, 50);
 		}
-		return button_59;
+		return e1;
 	}
-	private JButton getButton_60() {
-		if (button_60 == null) {
-			button_60 = new JButton("");
-			button_60.setBackground(Color.WHITE);
-			button_60.setBounds(300, 400, 50, 50);
+	private JButton getF1() {
+		if (f1 == null) {
+			f1 = new JButton("");
+			f1.setBackground(Color.WHITE);
+			f1.setBounds(300, 400, 50, 50);
 		}
-		return button_60;
+		return f1;
 	}
-	private JButton getButton_61() {
-		if (button_61 == null) {
-			button_61 = new JButton("");
-			button_61.setBackground(new Color(210, 105, 30));
-			button_61.setBounds(350, 400, 50, 50);
+	private JButton getG1() {
+		if (g1 == null) {
+			g1 = new JButton("");
+			g1.setBackground(new Color(210, 105, 30));
+			g1.setBounds(350, 400, 50, 50);
 		}
-		return button_61;
+		return g1;
 	}
-	private JButton getButton_62() {
-		if (button_62 == null) {
-			button_62 = new JButton("");
-			button_62.addActionListener(new ActionListener() {
+	private JButton getH1() {
+		if (h1 == null) {
+			h1 = new JButton("");
+			h1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 				}
 			});
-			button_62.setBackground(Color.WHITE);
-			button_62.setBounds(400, 400, 50, 50);
+			h1.setBackground(Color.WHITE);
+			h1.setBounds(400, 400, 50, 50);
 		}
-		return button_62;
+		return h1;
 	}
 	private JLabel getLblNewLabel_2() {
 		if (lblNewLabel_2 == null) {
